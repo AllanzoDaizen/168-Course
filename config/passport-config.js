@@ -1,11 +1,13 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const db = require('../models/db');  // Your database connection (assuming you're using it for storing users)
+require('dotenv').config();
+
 
 // Set up the Google OAuth strategy
 passport.use(new GoogleStrategy({
-    clientID: '490682706908-1b7i38grkikqqvg0jio36lroc3g3gchk.apps.googleusercontent.com',
-    clientSecret: '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',
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: 'http://localhost:3000/auth/google/callback'
   },
   async (accessToken, refreshToken, profile, done) => {
