@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 // app.use(express.static('public'));
 app.use('/css', express.static('public/css'));
+app.use('/img', express.static('public/img'));  // Serve static files like images
+app.use('/js', express.static('public/js'));  // Serve static files like images
 // Routes
 app.use('/', courseRoutes);
 
