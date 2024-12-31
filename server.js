@@ -17,6 +17,9 @@ app.use("/img", express.static("public/img"));
 app.use("/image", express.static("public/image"));
 app.use("/js", express.static("public/js"));
 
+app.use("/css", express.static("public/css"));
+app.use("/img", express.static("public/img")); // Serve static files like images
+app.use("/js", express.static("public/js")); // Serve static files like images
 // Routes
 app.use("/", courseRoutes);
 

@@ -9,11 +9,12 @@
     <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-5">
       <div class="card" style="height: 100%" ,>
         <img
-          src="<%= course.image %>"
+          src="<%= course.image ? course.image : '/img/placeholder.png' %>"
           class="card-img-top"
           alt="<%= course.title %>"
           style="height: 200px; object-fit: cover"
         />
+
         <div class="card-body">
           <h5 class="card-title"><%= course.title %></h5>
           <p class="card-text"><%= course.description %></p>
