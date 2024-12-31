@@ -1,18 +1,25 @@
-const mysql = require('mysql2');
-const bcrypt = require('bcryptjs');
+const mysql = require("mysql2");
+const bcrypt = require("bcryptjs");
 
 // Create a connection pool
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root', 
-  password: 'root', 
-  database: 'gproduct',
+  host: "localhost",
+  user: "root",
+  password: "apn123",
+  database: "gproduct",
 });
 
 const promisePool = pool.promise();
 
 // Register user (local or OAuth)
-async function registerUser(firstname, lastname, email, password, googleId = null, facebookId = null) {
+async function registerUser(
+  firstname,
+  lastname,
+  email,
+  password,
+  googleId = null,
+  facebookId = null
+) {
   try {
     // Check if the email already exists
     const [existingUser] = await promisePool.query(
@@ -21,7 +28,7 @@ async function registerUser(firstname, lastname, email, password, googleId = nul
     );
 
     if (existingUser.length > 0) {
-      throw new Error('Email already exists');
+      throw new Error("Email already exists");
     }
 
     let hashedPassword = null;
@@ -30,7 +37,7 @@ async function registerUser(firstname, lastname, email, password, googleId = nul
     if (password) {
       hashedPassword = await bcrypt.hash(password, 10);
     }
-    
+
     const [result] = await promisePool.query(
       `INSERT INTO users (firstname, lastname, email, password, googleId, facebookId) 
        VALUES (?, ?, ?, ?, ?, ?)`,
@@ -39,7 +46,7 @@ async function registerUser(firstname, lastname, email, password, googleId = nul
 
     return result;
   } catch (error) {
-    console.error('Error during registration:', error); // Debugging log
+    console.error("Error during registration:", error); // Debugging log
     throw error;
   }
 }
@@ -54,12 +61,12 @@ async function authenticateUser(email, password) {
 
     if (rows.length > 0) {
       const user = rows[0];
-      console.log('User fetched from DB:', user); // Debugging log
+      console.log("User fetched from DB:", user); // Debugging log
 
       // Check password
       if (password) {
         const match = await bcrypt.compare(password, user.password);
-        console.log('Password comparison result:', match); // Debugging log
+        console.log("Password comparison result:", match); // Debugging log
         if (match) {
           return user; // Successful login
         }
@@ -68,7 +75,7 @@ async function authenticateUser(email, password) {
 
     return null; // Invalid credentials
   } catch (error) {
-    console.error('Error during authentication:', error); // Debugging log
+    console.error("Error during authentication:", error); // Debugging log
     throw error;
   }
 }
@@ -80,7 +87,7 @@ async function findUserByOAuthId(googleId, facebookId) {
       return null; // Return null if neither OAuth ID is provided
     }
 
-    let query = '';
+    let query = "";
     let params = [];
 
     if (googleId) {
@@ -95,7 +102,7 @@ async function findUserByOAuthId(googleId, facebookId) {
 
     return rows.length > 0 ? rows[0] : null; // Return user if found, otherwise null
   } catch (error) {
-    console.error('Error during OAuth user lookup:', error); // Debugging log
+    console.error("Error during OAuth user lookup:", error); // Debugging log
     throw error;
   }
 }
