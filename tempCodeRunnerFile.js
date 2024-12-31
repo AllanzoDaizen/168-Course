@@ -1,1 +1,1 @@
-app.use('/css', express.static('public/css'));  // Serve static files like CSS
+app.use("/css", express.static("public/css")); // Serve static files like CSS
