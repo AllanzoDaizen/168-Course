@@ -190,12 +190,21 @@
   -moz-transition: box-shadow 0.2s ease-in;
   transition: box-shadow 0.2s ease-in;
 }
-
+@media (max-width: 1285.6px) {
+  #sub {
+    margin-top: 5px;
+    float: inline-end;
+  }
+}
 @media (max-width: 768px) {
+  .text-center {
+    padding-top: 10%;
+  }
   #btndis {
     font-size: 16px;
     padding: 0.5em 1.5em;
     border-width: 2px;
+    margin: 10%;
   }
 
   .card {
@@ -214,6 +223,10 @@
 
   .card p:not(.heading) {
     font-size: 12px;
+  }
+  #sub {
+    margin-top: 5px;
+    float: inline-end;
   }
 }
 
