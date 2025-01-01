@@ -94,6 +94,9 @@ form{
     border-radius: 5px;
     height: 40px;
 }
+label{
+    width: 300px; text-align: start; padding-top: 10px; padding-right: 20px;
+}
 .form-control::placeholder {
     color: white;
     opacity: 1;

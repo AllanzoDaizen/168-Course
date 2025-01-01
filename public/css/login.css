@@ -99,6 +99,10 @@ i {
   padding-right: 15px;
   padding-top: 15px;
 }
+.or_continue{
+  padding-bottom: 20px;
+  text-align: center;
+}
 @media screen and (max-width: 430px) {
   .navsh {
     flex-direction: column;
