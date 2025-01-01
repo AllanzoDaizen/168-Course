@@ -80,7 +80,8 @@ form {
   color: white;
   display: flex;
 }
-.mb-3 input {
+.mb-3 input,
+.mb-3 textarea {
   background-color: transparent;
   border: 1px solid #ccc;
   padding: 10px;
@@ -232,4 +233,3 @@ i {
     color: blue;
   }
 }
-
