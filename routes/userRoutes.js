@@ -10,4 +10,7 @@ router.post('/user/login', userController.login); // Post login form
 router.get('/user/register', userController.getRegister); // Get register page
 router.post('/user/register', userController.register); // Post register form
 
+// Logout route
+router.get('/user/logout', userController.logout); // Logout user
+router.get('/user/home', userController.home); // Home page after login
 module.exports = router;

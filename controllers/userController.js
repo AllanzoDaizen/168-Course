@@ -42,4 +42,8 @@ function home(req, res) {
   }
 }
 
-module.exports = { register, login, home };
+async function logout(req, res) {
+  req.logout();
+  res.redirect('/logout');
+}
+module.exports = { register, login, home, logout };

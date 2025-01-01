@@ -72,6 +72,9 @@ app.get('/auth/google/callback',
   }
 );
 
+app.get('/logout', (req, res) => {
+  res.render('logout');
+});
 // Start the server
 app.listen(3000, () => {
   console.log('Server started on http://localhost:3000');
