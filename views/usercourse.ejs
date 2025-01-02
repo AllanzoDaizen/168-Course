@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/usercourse.css" type="text/css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
-</head>
-<body>
-  <nav class="navsh">
-    <img class="logo" src="img/logozin.webp" alt="logo">
-    <ul class="nav justify-content-end" id="navkh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/usercourse.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navsh">
+      <img class="logo" src="img/logozin.webp" alt="logo" />
+      <ul class="nav justify-content-end" id="navkh">
         <li class="nav-item"><a class="nav-link" href="/home">HOME</a></li>
-        <li class="nav-item"><a class="nav-link" href="/usercourse">COURSE</a></li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            style="color: aqua; border: 2px solid aqua; border-radius: 10px"
+            href="/usercourse"
+            >COURSE</a
+          >
+        </li>
         <li class="nav-item"><a class="nav-link" href="/login">LOGIN</a></li>
         <li class="nav-item">
           <a class="nav-link active" href="/register">REGISTER</a>
@@ -22,96 +35,144 @@
     </nav>
 
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <% courses.forEach(course => { %> 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-5">
-                <div class="card" style="width: 100%; height: auto">
-                    <img
-                    src="<%= course.image ? course.image : '/img/placeholder.png' %>"
-                    class="card-img-top"
-                    alt="<%= course.title %>"
-                    style="height: 200px; object-fit: cover"
-                    />
-                    <div class="card-body">
-                    <h5 class="card-title"><%= course.title %></h5>
-                    <p class="card-text"><%= course.description %></p>
-                    <p class="card-text">
-                        <strong>Author:</strong> <%= course.author %>
-                    </p>
-                    <p class="card-text" style="color: yellow;">
-                        <strong style="color: white;">Price:</strong> $<%= course.price %>
-                    </p>
-                    <% if (course.price == 0) { %>
-                        <!-- Free Course Button -->
-                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#courseModal" data-title="<%= course.title %>" data-description="<%= course.description %>" data-price="<%= course.price %>" data-image="<%= course.image ? course.image : '/img/placeholder.png' %>">Free</button>
-                    <% } else { %>
-                        <!-- Buy Now Button -->
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#courseModal" data-title="<%= course.title %>" data-description="<%= course.description %>" data-price="<%= course.price %>" data-image="<%= course.image ? course.image : '/img/placeholder.png' %>">Buy Now</button>
-                    <% } %>
-                    </div>
-                </div>
+      <div class="row justify-content-center">
+        <% courses.forEach(course => { %>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-5">
+          <div class="card" style="width: 100%; height: auto">
+            <img
+              src="<%= course.image ? course.image : '/img/placeholder.png' %>"
+              class="card-img-top"
+              alt="<%= course.title %>"
+              style="height: 200px; object-fit: cover"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= course.title %></h5>
+              <p class="card-text"><%= course.description %></p>
+              <p class="card-text">
+                <strong>Author:</strong> <%= course.author %>
+              </p>
+              <p class="card-text" style="color: yellow">
+                <strong style="color: white">Price:</strong> $<%= course.price
+                %>
+              </p>
+              <% if (course.price == 0) { %>
+              <!-- Free Course Button -->
+              <button
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#courseModal"
+                data-title="<%= course.title %>"
+                data-description="<%= course.description %>"
+                data-price="<%= course.price %>"
+                data-image="<%= course.image ? course.image : '/img/placeholder.png' %>"
+              >
+                Free
+              </button>
+              <% } else { %>
+              <!-- Buy Now Button -->
+              <button
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#courseModal"
+                data-title="<%= course.title %>"
+                data-description="<%= course.description %>"
+                data-price="<%= course.price %>"
+                data-image="<%= course.image ? course.image : '/img/placeholder.png' %>"
+              >
+                Buy Now
+              </button>
+              <% } %>
             </div>
-            <% }) %>
+          </div>
         </div>
+        <% }) %>
+      </div>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="courseModal" tabindex="-1" aria-labelledby="courseModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="courseModal"
+      tabindex="-1"
+      aria-labelledby="courseModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="courseModalLabel">Course Title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
-            <img src="" class="img-fluid mb-3" alt="Course Image" id="modalCourseImage">
+            <img
+              src=""
+              class="img-fluid mb-3"
+              alt="Course Image"
+              id="modalCourseImage"
+            />
             <h5>Description</h5>
             <p id="modalCourseDescription"></p>
             <p><strong>Price:</strong> $<span id="modalCoursePrice"></span></p>
             <div class="payment-methods">
-              <button class="btn btn-success" onclick="checkAuthenticationAndProceed('free')">Pay with Credit Card</button>
-              <button class="btn btn-info" onclick="checkAuthenticationAndProceed('paypal')">Pay with PayPal</button>
+              <button
+                class="btn btn-success"
+                onclick="checkAuthenticationAndProceed('free')"
+              >
+                Pay with Credit Card
+              </button>
+              <button
+                class="btn btn-info"
+                onclick="checkAuthenticationAndProceed('paypal')"
+              >
+                Pay with PayPal
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 
-  <script>
-    // JavaScript to populate the modal with course details
-    const courseModal = document.getElementById('courseModal');
-    courseModal.addEventListener('show.bs.modal', function(event) {
-      const button = event.relatedTarget; // Button that triggered the modal
-      const title = button.getAttribute('data-title');
-      const description = button.getAttribute('data-description');
-      const price = button.getAttribute('data-price');
-      const image = button.getAttribute('data-image');
+    <script>
+      // JavaScript to populate the modal with course details
+      const courseModal = document.getElementById("courseModal");
+      courseModal.addEventListener("show.bs.modal", function (event) {
+        const button = event.relatedTarget; // Button that triggered the modal
+        const title = button.getAttribute("data-title");
+        const description = button.getAttribute("data-description");
+        const price = button.getAttribute("data-price");
+        const image = button.getAttribute("data-image");
 
-      // Update the modal's content
-      document.getElementById('courseModalLabel').textContent = title;
-      document.getElementById('modalCourseDescription').textContent = description;
-      document.getElementById('modalCoursePrice').textContent = price;
-      document.getElementById('modalCourseImage').src = image;
-    });
-    
-    // Function to check authentication and proceed
-    function checkAuthenticationAndProceed(paymentMethod) {
-      // Simulating authentication check (replace with actual authentication logic)
-      const isAuthenticated = false; // Set to 'true' if the user is authenticated, 'false' if not.
+        // Update the modal's content
+        document.getElementById("courseModalLabel").textContent = title;
+        document.getElementById("modalCourseDescription").textContent =
+          description;
+        document.getElementById("modalCoursePrice").textContent = price;
+        document.getElementById("modalCourseImage").src = image;
+      });
 
-      if (isAuthenticated) {
-        // Redirect to payment page
-        window.location.href = `/payment?method=${paymentMethod}`;
-      } else {
-        // If not authenticated, redirect to login page
-        alert("You need to log in to make a payment.");
-        window.location.href = "/login";
+      // Function to check authentication and proceed
+      function checkAuthenticationAndProceed(paymentMethod) {
+        // Simulating authentication check (replace with actual authentication logic)
+        const isAuthenticated = false; // Set to 'true' if the user is authenticated, 'false' if not.
+
+        if (isAuthenticated) {
+          // Redirect to payment page
+          window.location.href = `/payment?method=${paymentMethod}`;
+        } else {
+          // If not authenticated, redirect to login page
+          alert("You need to log in to make a payment.");
+          window.location.href = "/login";
+        }
       }
-    }
-  </script>
+    </script>
     <script src="../models/user.js"></script>
-</body>
+  </body>
 </html>
