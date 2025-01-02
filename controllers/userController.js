@@ -8,11 +8,13 @@ async function register(req, res) {
     res.redirect('/login');
   } catch (error) {
     console.error(error);
-    res.status(500).send('Error registering user');
+    res.render('register', { // Use res.render() to render the registration page with error messages
+      messages: { error: [error.message] } 
+    });
   }
 }
 
-// Login user using Passport
+
 async function login(req, res, next) {
   const { email, password } = req.body;
   try {
@@ -20,18 +22,21 @@ async function login(req, res, next) {
     if (user) {
       req.login(user, (err) => {
         if (err) {
-          return next(err);  // Handle any errors during login
+          return next(err); // Handle any errors during login
         }
-        res.redirect('/home');  // Redirect to home if login is successful
+        res.redirect('/home'); // Redirect to home if login is successful
       });
     } else {
-      res.status(401).send('Invalid credentials');
+      req.flash('error', 'Invalid credentials. Please try again.');
+      res.redirect('/login'); // Redirect to login page on failure
     }
   } catch (error) {
     console.error(error);
-    res.status(500).send('Error logging in');
+    req.flash('error', 'An error occurred during login. Please try again.');
+    res.redirect('/login'); // Redirect to login page on error
   }
 }
+
 
 // Home page after login
 function home(req, res) {
@@ -41,9 +46,24 @@ function home(req, res) {
     res.redirect('/login');
   }
 }
+async function logout(req, res, next) {
+  // Log out the user and destroy the session
+  req.logout((err) => {
+    if (err) {
+      return next(err); // Handle any logout error
+    }
 
-async function logout(req, res) {
-  req.logout();
-  res.redirect('/logout');
+    // Destroy the session data
+    req.session.destroy((err) => {
+      if (err) {
+        return next(err); // Handle any session destruction error
+      }
+
+      // After logging out, redirect to home page with default user data
+      res.render('home', { user: { firstname: 'User', email: 'Not logged in' } });
+    });
+  });
 }
+
+
 module.exports = { register, login, home, logout };

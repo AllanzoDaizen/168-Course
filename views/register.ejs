@@ -27,7 +27,7 @@
           <h1 class="register_header">REGISTER NOW</h1>
           <hr />
           <!-- Registration Form -->
-          <form action="/user/register" method="POST">
+          <form action="/register" method="POST">
             <div class="mb-3">
               <label>First Name</label>
               <input
@@ -68,6 +68,14 @@
                 required
               />
             </div>
+            <% if (messages && messages.error && messages.error.length > 0) { %>
+              <p class="text-danger mt-3">
+                <% messages.error.forEach(function(error) { %>
+                  <span><%= error %>!!</span><br>
+                <% }); %>
+              </p>
+            <% } %>
+            
             <button type="submit" class="btn btn-outline-info">REGISTER</button>
           </form>
 
