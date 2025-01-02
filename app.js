@@ -60,6 +60,9 @@ app.get("/usercourse", async (req, res) => {
   }
 });
 app.get("/usercourse", userController.getCourses);
+app.get('/coursedetails', (req, res) => {
+  res.render('coursedetails');
+});
 
 app.post("/login", userController.login);
 
