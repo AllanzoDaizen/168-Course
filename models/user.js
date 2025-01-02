@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "apn123",
   database: "gproduct",
 });
 
