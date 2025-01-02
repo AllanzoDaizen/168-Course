@@ -6,6 +6,7 @@ const passport = require("passport");
 const userController = require("./controllers/userController");
 const flash = require("connect-flash");
 const app = express();
+const promisePool = require('./models/user').promisePool;
 
 // Middleware for parsing request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -48,6 +49,17 @@ app.post("/register", userController.register);
 app.get("/login", (req, res) => {
   res.render("login");
 });
+
+app.get("/usercourse", async (req, res) => {
+  try {
+    const [courses] = await promisePool.query("SELECT * FROM courses");
+    res.render("usercourse", { courses });
+  } catch (err) {
+    console.error("Error fetching courses:", err);
+    res.status(500).send("Error fetching courses.");
+  }
+});
+app.get("/usercourse", userController.getCourses);
 
 app.post("/login", userController.login);
 

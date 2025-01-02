@@ -65,5 +65,14 @@ async function logout(req, res, next) {
   });
 }
 
+async function getCourses(req, res){
+  try {
+    const [rows] = await db.query('SELECT * FROM courses');
+    res.render('usercourse', { courses: rows });
+  } catch (error) {
+    console.error('Error fetching courses:', error);
+    res.status(500).send('Server Error');
+  }
+};
 
-module.exports = { register, login, home, logout };
+module.exports = { register, login, home, logout, getCourses };

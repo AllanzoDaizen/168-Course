@@ -13,4 +13,5 @@ router.post('/register', userController.register); // Post register form
 // Logout route
 router.get('/logout', userController.logout); // Logout user
 router.get('/home', userController.home); // Home page after login
+router.get('/usercourse', userController.getCourses);
 module.exports = router;
