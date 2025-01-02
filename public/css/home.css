@@ -130,7 +130,7 @@ h3 {
     var(--btn-bg-2) 90%
   );
   border: none;
-  border-radius: var(--radii);
+  border-radius: 20px;
   color: var(--btn-bg-color);
   box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5),
     0px 5px 5px -1px rgba(58, 125, 233, 0.25),
@@ -174,7 +174,7 @@ h3 {
     var(--btn-bg-2) 90%
   );
   border: none;
-  border-radius: var(--radii);
+  border-radius: 20px;
   color: var(--btn-bg-color);
   box-shadow: 0px 0px 20px rgba(255, 71, 71, 0.5),
     0px 5px 5px -1px rgba(233, 58, 58, 0.25),
