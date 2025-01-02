@@ -47,7 +47,7 @@ exports.createCourse = async (req, res) => {
       [title, description, author, price, image_path]
     );
 
-    res.redirect('/');  // Redirect to the homepage or courses page after successful creation
+    res.redirect('/courses');  // Redirect to the homepage or courses page after successful creation
   } catch (error) {
     console.error('Error creating course:', error);
     res.status(500).send('Server Error');
@@ -76,7 +76,7 @@ exports.updateCourse = async (req, res) => {
       'UPDATE courses SET title = ?, description = ?, author = ?, price = ?, image = ? WHERE id = ?',
       [title, description, author, price, image, courseId]
     );
-    res.redirect('/');
+    res.redirect('/courses');
   } catch (error) {
     console.error('Error updating course:', error);
     res.status(500).send('Server Error');
@@ -88,7 +88,7 @@ exports.deleteCourse = async (req, res) => {
   const courseId = req.params.id;
   try {
     await db.query('DELETE FROM courses WHERE id = ?', [courseId]);
-    res.redirect('/');
+    res.redirect('/courses');
   } catch (error) {
     console.error('Error deleting course:', error);
     res.status(500).send('Server Error');
