@@ -37,32 +37,49 @@
     <link rel="stylesheet" href="/css/login.css" />
     <link rel="stylesheet" href="/css/courses.css" />
     <link rel="stylesheet" href="/css/create.css" />
+    <style>
+      .active-link {
+        color: aqua !important;
+        border: 2px solid aqua !important;
+        border-radius: 10px !important;
+      }
+    </style>
   </head>
   <body>
     <nav class="navsh">
       <img class="logo" src="/img/logozin.webp" alt="logo" />
       <ul class="nav justify-content-end" id="navkh">
         <li class="nav-item">
-          <a class="nav-link" href="index.html">HOME</a>
+          <a class="nav-link" href="/">COURSE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="details.html">DETAIL</a>
+          <a class="nav-link" href="/courses/create">CREATE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="course.html">COURSE</a>
-        </li>
-        <li class="nav-item">
-          <a
-            style="color: aqua; border: 2px solid aqua; border-radius: 10px"
-            class="nav-link"
-            href="login.html"
-            >LOGIN</a
+          <a class="nav-link"
+            ><i
+              class="fa-duotone fa-solid fa-user"
+              style="color: greenyellow; font-size: smaller"
+            >
+            </i
+            >ADMIN</a
           >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="register1.html">REGISTER</a>
         </li>
       </ul>
     </nav>
+
+    <
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentPath = window.location.pathname; // Get current path
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        navLinks.forEach((link) => {
+          if (link.getAttribute("href") === currentPath) {
+            link.classList.add("active-link");
+          }
+        });
+      });
+    </script>
   </body>
 </html>
