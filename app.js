@@ -92,6 +92,15 @@ app.get('/auth/google/callback',
   }
 );
 
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+
+// Facebook callback handler
+app.get('/auth/facebook/callback', 
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  (req, res) => {
+    res.redirect('/home');  // Redirect the user to their profile page or dashboard
+  });
+
 // Logout route
 app.get('/logout', (req, res) => {
   req.logout((err) => {
@@ -124,3 +133,4 @@ app.listen(3000, () => {
 
 // Passport configuration
 require('./config/passport-config'); 
+require('./config/passport-facebook');
