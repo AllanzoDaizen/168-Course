@@ -46,7 +46,11 @@
                   WELCOME, <span style="  font-family: 'Bungee Spice', sans-serif;"><%= user.firstname %>!</span> TO <span id="logotxt">Team168.com</span><p class="fs-6">Your main site for accesing free online course</p>
             </h3>
             <p>You are logged in with: <%= user.email %></p>
-            <a href="/logout" class="btn btn-danger">Log Out</a>
+            <% if (user && user.email !== "Not logged in") { %>
+              <a href="/logout" id="lgout" class="btn btn-danger">Log Out</a>
+            <% } else { %>
+              <a href="/login" id="lgin" class="btn btn-primary">Log In</a>
+            <% } %>
             </div>
             <div class="col">
               <div id="carouselExampleAutoplaying m-3" class="carousel slide" data-bs-ride="carousel">
