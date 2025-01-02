@@ -13,6 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: white;
 }
 
 #navkh{
@@ -68,6 +69,7 @@ body {
     border: 1.5px solid white;
     border-radius: 15px;
     padding: 20px;
+    color: white;
     
 }
 .register_header{
@@ -93,6 +95,7 @@ form{
     padding: 10px;
     border-radius: 5px;
     height: 40px;
+    color: white;
 }
 label{
     width: 300px; text-align: start; padding-top: 10px; padding-right: 20px;
